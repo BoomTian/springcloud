@@ -1,0 +1,21 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: springcloud_zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+
+  instance:
+    instance-id: zuul9527.com
+    prefer-ip-address: true
+zuul:
+  routes:
+    mydept.serviceid: springcloud-provider-dept
+    mydept.path: /mydept/**
+  ignored-services: springcloud-provider-dept  //不能使用此名访问了  忽略本地全部微服务名 “*”
+  prefix: /tbw   //前缀
